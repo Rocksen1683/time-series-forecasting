@@ -1,0 +1,63 @@
+WindowManager:
+    MainWindow:
+    SecondWindow: 
+
+<MainWindow>
+    name: 'main'
+    stock: stock 
+
+    GridLayout: 
+        cols: 1
+
+        GridLayout:
+            cols: 2
+
+            Label: 
+                text: 'Stock: '
+            
+            TextInput:
+                id: stock  
+                multiline: False
+
+        Button: 
+            text: 'Submit'
+            on_press: 
+                root.press()
+                app.root.current = 'second'
+                root.manager.transition.direction = 'left'
+
+<SecondWindow>
+    name: 'second'
+    thing: thing
+    thing1: thing1
+
+    GridLayout:
+        cols: 1
+        
+        GridLayout: 
+            cols: 2
+
+            Label: 
+                id: thing
+                text: 'RESULT!!'
+
+            Button: 
+                text: 'Click to display prediction'
+                on_press: 
+                    root.widget1()
+
+            Label: 
+                id: thing1 
+                text: 'RESULT!!'
+            
+            Button: 
+                text: 'Click to display Mean Square Error'
+                on_press:
+                    root.widget2()
+
+        Button:
+            text: 'Go Back'
+            on_press:
+                root.clear()
+                app.root.current = 'main' 
+                root.manager.transition.direction = 'right'
